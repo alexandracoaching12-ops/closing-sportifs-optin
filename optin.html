@@ -1,0 +1,271 @@
+<title>Deviens Closer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #000000;
+    --white: #FFFFFF;
+    --cream: #EDE6D2;
+    --cream-dim: rgba(237,230,210,0.6);
+    --royal: #3452E1;
+    --royal-deep: #24399E;
+    --line: rgba(237,230,210,0.22);
+    --error: #FF6B57;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Montserrat', system-ui, sans-serif;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  .sheet {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  h1 {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(32px, 8vw, 42px);
+    line-height: 1.12;
+    margin: 0;
+    color: var(--white);
+    text-wrap: balance;
+  }
+  h1 .accent { color: var(--royal); font-style: italic; }
+
+  .sub {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--cream-dim);
+    max-width: 42ch;
+  }
+
+  form { display: flex; flex-direction: column; gap: 20px; }
+
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  .field label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+  }
+  .field input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: var(--white);
+    padding: 8px 2px 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--line);
+    border-radius: 0;
+    outline: none;
+    transition: border-color .15s ease;
+  }
+  .field input::placeholder { color: rgba(237,230,210,0.35); }
+  .field input:focus { border-color: var(--royal); }
+  .field.has-error input { border-color: var(--error); }
+  .field .msg {
+    font-size: 11.5px;
+    color: var(--error);
+    display: none;
+  }
+  .field.has-error .msg { display: block; }
+
+  button.submit {
+    margin-top: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--royal);
+    color: var(--white);
+    border: none;
+    border-radius: 3px;
+    padding: 16px;
+    cursor: pointer;
+    transition: background .15s ease, opacity .15s ease;
+  }
+  button.submit:hover { background: var(--royal-deep); }
+  button.submit:disabled { opacity: 0.55; cursor: default; }
+  button.submit:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+  .form-error {
+    font-size: 12.5px;
+    color: var(--error);
+    display: none;
+    text-align: center;
+  }
+  .form-error.show { display: block; }
+
+  .callback-note {
+    margin: 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--cream);
+  }
+
+  .footnote {
+    text-align: center;
+    font-size: 11px;
+    color: var(--cream-dim);
+    opacity: 0.75;
+  }
+</style>
+
+<div class="sheet">
+  <h1>Quitte ton job alimentaire.<br><span class="accent">Grâce au closing.</span></h1>
+
+  <p class="sub">Développe-toi à fond sur le plan sportif et physique — sans un job qui te vide de ton énergie.</p>
+
+  <form id="optin-form" novalidate>
+    <div class="field" id="field-prenom">
+      <label for="prenom">Prénom</label>
+      <input type="text" id="prenom" name="prenom" placeholder="Ton prénom" autocomplete="given-name" required>
+      <span class="msg">Indique ton prénom.</span>
+    </div>
+
+    <div class="field" id="field-email">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="ton@email.com" autocomplete="email" required>
+      <span class="msg">Vérifie ton adresse email.</span>
+    </div>
+
+    <div class="field" id="field-tel">
+      <label for="telephone">Téléphone</label>
+      <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78" autocomplete="tel" inputmode="tel" required>
+      <span class="msg">Vérifie ton numéro (10 chiffres).</span>
+    </div>
+
+    <button type="submit" class="submit" id="submit-btn">Je m'inscris</button>
+    <span class="form-error" id="form-error">Un souci est survenu. Réessaie dans un instant.</span>
+  </form>
+
+  <p class="callback-note">Tu seras appelé(e) sous 24h.</p>
+  <p class="footnote">Données confidentielles. Aucun spam.</p>
+</div>
+
+<script>
+  // ============================================================
+  // CONFIGURATION — à compléter avant la mise en ligne
+  // ============================================================
+  const CONFIG = {
+    // ID de ton Pixel Meta (Gestionnaire d'événements > ta source de données)
+    META_PIXEL_ID: "XXXXXXXXXXXXXXXX",
+
+    // Clé d'accès Web3Forms (gratuite, sans code serveur) — voir le guide
+    // pour la créer sur https://web3forms.com puis colle-la ici.
+    WEB3FORMS_ACCESS_KEY: "REMPLACE_PAR_TA_CLE_WEB3FORMS",
+
+    // Page vers laquelle rediriger juste après l'envoi du formulaire
+    REDIRECT_URL: "vsl.html"
+  };
+  // ============================================================
+
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  const pixelReady = CONFIG.META_PIXEL_ID && CONFIG.META_PIXEL_ID.indexOf('X') === -1;
+  if (pixelReady) {
+    fbq('init', CONFIG.META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  const form = document.getElementById('optin-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const formError = document.getElementById('form-error');
+  const fieldPrenom = document.getElementById('field-prenom');
+  const fieldEmail = document.getElementById('field-email');
+  const fieldTel = document.getElementById('field-tel');
+  const inputPrenom = document.getElementById('prenom');
+  const inputEmail = document.getElementById('email');
+  const inputTel = document.getElementById('telephone');
+
+  function digitsOnly(str) { return str.replace(/\D/g, ''); }
+  function isValidEmail(str) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str); }
+
+  function validate() {
+    let ok = true;
+    if (inputPrenom.value.trim().length < 2) {
+      fieldPrenom.classList.add('has-error'); ok = false;
+    } else { fieldPrenom.classList.remove('has-error'); }
+
+    if (!isValidEmail(inputEmail.value.trim())) {
+      fieldEmail.classList.add('has-error'); ok = false;
+    } else { fieldEmail.classList.remove('has-error'); }
+
+    const digits = digitsOnly(inputTel.value);
+    if (digits.length < 9 || digits.length > 12) {
+      fieldTel.classList.add('has-error'); ok = false;
+    } else { fieldTel.classList.remove('has-error'); }
+
+    return ok;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    formError.classList.remove('show');
+    if (!validate()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi…';
+
+    const prenom = inputPrenom.value.trim();
+    const email = inputEmail.value.trim();
+    const telephone = inputTel.value.trim();
+
+    try {
+      if (CONFIG.WEB3FORMS_ACCESS_KEY && CONFIG.WEB3FORMS_ACCESS_KEY.indexOf('REMPLACE') === -1) {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+            subject: 'Nouveau lead — Opt-in Closing',
+            prenom: prenom,
+            email: email,
+            telephone: telephone
+          })
+        });
+      }
+
+      if (pixelReady) {
+        // Advanced Matching : ré-initialise le pixel avec email/téléphone
+        // juste avant l'événement Lead pour améliorer la qualité du tracking.
+        fbq('init', CONFIG.META_PIXEL_ID, { em: email.toLowerCase(), ph: digitsOnly(telephone) });
+        fbq('track', 'Lead');
+      }
+
+      // Transmis à la page suivante sans passer par l'URL (pas de donnée
+      // personnelle dans les paramètres de lien).
+      try { sessionStorage.setItem('prenom', prenom); } catch (err) {}
+
+      window.location.href = CONFIG.REDIRECT_URL;
+
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Je m'inscris";
+      formError.classList.add('show');
+    }
+  });
+</script>

@@ -1,0 +1,550 @@
+<title>Guide Campagne Closing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root {
+    --bg: #F0F1EC;
+    --bg-card: #FFFFFF;
+    --ink: #14181D;
+    --ink-soft: #565C64;
+    --line: rgba(20,24,29,0.13);
+    --accent: #FF5A1F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #FFE1CD;
+    --track: #2F6F62;
+    --track-soft: #DCEAE6;
+    --warn: #96660A;
+    --warn-soft: #FBEDCE;
+    --warn-line: #E8CE9C;
+    --code-bg: #14181D;
+    --code-ink: #EAE7DE;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14181D;
+      --bg-card: #1B2027;
+      --ink: #F0F1EC;
+      --ink-soft: #A9AFB8;
+      --line: rgba(240,241,236,0.15);
+      --accent: #FF6A33;
+      --accent-ink: #14181D;
+      --accent-soft: #3A2416;
+      --track: #4C9C8A;
+      --track-soft: #1E2E2A;
+      --warn: #E8B94D;
+      --warn-soft: #2E2712;
+      --warn-line: #4A3D1B;
+      --code-bg: #0B0D10;
+      --code-ink: #DCE0E5;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14181D;
+    --bg-card: #1B2027;
+    --ink: #F0F1EC;
+    --ink-soft: #A9AFB8;
+    --line: rgba(240,241,236,0.15);
+    --accent: #FF6A33;
+    --accent-ink: #14181D;
+    --accent-soft: #3A2416;
+    --track: #4C9C8A;
+    --track-soft: #1E2E2A;
+    --warn: #E8B94D;
+    --warn-soft: #2E2712;
+    --warn-line: #4A3D1B;
+    --code-bg: #0B0D10;
+    --code-ink: #DCE0E5;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 0 20px;
+  }
+  .top-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .top-inner::-webkit-scrollbar { display: none; }
+  .top-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    flex: none;
+    padding-right: 6px;
+    border-right: 1px solid var(--line);
+  }
+  .top a {
+    flex: none;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 7px;
+    white-space: nowrap;
+  }
+  .top a:hover, .top a:focus-visible { background: var(--track-soft); color: var(--track); }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 20px 90px;
+  }
+
+  header.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--track);
+    background: var(--track-soft);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+  h1.title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(34px, 6vw, 46px);
+    line-height: 1;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .hero p { margin: 0; color: var(--ink-soft); max-width: 58ch; }
+
+  section { margin-bottom: 44px; scroll-margin-top: 66px; }
+
+  .step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+  }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.01em;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  h3 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 22px 0 8px;
+  }
+
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  strong { font-weight: 700; }
+  a.inline { color: var(--track); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 620px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .option {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .option .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .option h4 { margin: 0; font-size: 15.5px; font-weight: 700; }
+  .option p, .option ul { font-size: 13.8px; color: var(--ink-soft); margin-bottom: 0; }
+  .option ul { padding-left: 18px; }
+
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+    font-size: 13.8px;
+  }
+  .spec-table th, .spec-table td {
+    text-align: left;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .spec-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .spec-table td:first-child { font-weight: 600; white-space: nowrap; }
+  .table-wrap { overflow-x: auto; }
+
+  code, .code-inline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.88em;
+    background: var(--track-soft);
+    color: var(--track);
+    padding: 1px 6px;
+    border-radius: 5px;
+  }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.8px;
+    line-height: 1.6;
+    padding: 14px 16px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 0 0 14px;
+  }
+
+  .callout {
+    display: flex;
+    gap: 10px;
+    padding: 13px 15px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+  .callout svg { flex: none; margin-top: 2px; }
+  .callout.warn { background: var(--warn-soft); border: 1px solid var(--warn-line); color: var(--ink); }
+  .callout.warn svg { color: var(--warn); }
+  .callout.tip { background: var(--track-soft); color: var(--ink); }
+  .callout.tip svg { color: var(--track); }
+  .callout p { margin: 0; }
+  .callout strong { color: inherit; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist .box {
+    flex: none;
+    width: 17px;
+    height: 17px;
+    border-radius: 5px;
+    border: 1.5px solid var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  .ad-copy {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .ad-copy .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .ad-copy p { margin: 0 0 6px; font-size: 14px; }
+  .ad-copy p:last-child { margin-bottom: 0; }
+
+  .kv { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-bottom: 14px; }
+  .kv div { display: flex; flex-direction: column; gap: 2px; }
+  .kv .k { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  .kv .v { font-weight: 700; font-size: 15px; }
+
+  footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+</style>
+
+<div class="top">
+  <div class="top-inner">
+    <span class="top-tag">SOMMAIRE</span>
+    <a href="#funnel">Funnel</a>
+    <a href="#domaine">Domaine</a>
+    <a href="#pixel">Pixel</a>
+    <a href="#campagne">Campagne</a>
+    <a href="#ciblage">Ciblage</a>
+    <a href="#creas">Créas</a>
+    <a href="#copy">Textes</a>
+    <a href="#conformite">Conformité</a>
+    <a href="#suivi">Suivi</a>
+    <a href="#checklist">Checklist</a>
+  </div>
+</div>
+
+<main>
+  <header class="hero">
+    <span class="eyebrow">Guide de lancement</span>
+    <h1 class="title">Campagne Meta — Opt-in Closing Sportifs</h1>
+    <p>De la page d'inscription jusqu'à l'appel à J+1 : mise en place du domaine, du pixel, de la campagne Advantage+ à 50&nbsp;€/jour, du ciblage et des formats créatifs.</p>
+  </header>
+
+  <section id="funnel">
+    <div class="step-head"><span class="step-num">01</span><h2>Le tunnel en une image</h2></div>
+    <p>Trois temps, aucun rendez-vous à prendre en ligne :</p>
+    <ol>
+      <li><strong>Pub Meta</strong> (vidéo ou image) → clic vers ta page d'opt-in sur ton propre nom de domaine.</li>
+      <li><strong>Opt-in</strong> — prénom + téléphone uniquement. À l'envoi : événement <code>Lead</code> envoyé au pixel, redirection automatique vers la page suivante.</li>
+      <li><strong>Micro-VSL</strong> — vidéo d'1 minute (à intégrer), aucun lien, aucun bouton. Le message : « je t'appelle sous 24h, ne raccroche pas ».</li>
+    </ol>
+    <div class="callout tip">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p>Les deux pages (<code>optin.html</code> et <code>vsl.html</code>) t'ont été envoyées en fichiers et publiées en aperçu. Elles ne sont pas faites pour rester hébergées sur un lien claude.ai — direction la section <a class="inline" href="#domaine">Domaine</a> pour les mettre sur ton propre nom de domaine.</p>
+    </div>
+  </section>
+
+  <section id="domaine">
+    <div class="step-head"><span class="step-num">02</span><h2>Nom de domaine &amp; hébergement</h2></div>
+    <p>Objectif : que ton lien soit <code>tonsite.com</code> et non une adresse d'outil IA. Deux façons d'y arriver avec les pages fournies.</p>
+
+    <div class="grid-2">
+      <div class="option">
+        <span class="tag">Recommandé si tu débutes</span>
+        <h4>Systeme.io (ou ClickFunnels)</h4>
+        <ul>
+          <li>Crée un compte, un « tunnel » à 2 pages</li>
+          <li>Colle le code de <code>optin.html</code> / <code>vsl.html</code> dans un bloc « Code HTML personnalisé »</li>
+          <li>Formulaire capturé nativement — <strong>pas besoin de Web3Forms</strong></li>
+          <li>Connexion du domaine en 2 clics dans Réglages → Noms de domaine</li>
+        </ul>
+      </div>
+      <div class="option">
+        <span class="tag">Contrôle total</span>
+        <h4>Netlify + domaine externe</h4>
+        <ul>
+          <li>Dépose le dossier des 2 fichiers HTML sur app.netlify.com (glisser-déposer, gratuit)</li>
+          <li>Active la capture de formulaire avec <a class="inline" href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> (déjà câblé dans le code, il faut juste ta clé gratuite)</li>
+          <li>Dans Netlify → Domain management, ajoute ton domaine et suis les 2 enregistrements DNS indiqués</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Acheter le domaine</h3>
+    <p>Chez un registrar comme OVHcloud, Ionos ou Namecheap (8–15&nbsp;€/an). Choisis un nom court et lisible à l'oral dans ta vidéo — ex. <code>prenom-closing.com</code> ou une variante de ton nom de marque. L'achat et la création de compte sont à faire toi-même ; dis-moi si tu veux que je t'accompagne pas à pas une fois le nom choisi.</p>
+  </section>
+
+  <section id="pixel">
+    <div class="step-head"><span class="step-num">03</span><h2>Pixel Meta — pour que la campagne apprenne seule</h2></div>
+    <ol>
+      <li>Meta Business Suite → <strong>Gestionnaire d'événements</strong> → Connecter une source de données → Web → nomme-le puis récupère l'<strong>ID du pixel</strong>.</li>
+      <li>Dans les deux fichiers HTML, remplace <code>XXXXXXXXXXXXXXXX</code> par cet ID (déjà repéré par un commentaire <code>CONFIGURATION</code> en haut du script).</li>
+      <li><strong>Vérifie ton domaine</strong> : Paramètres de l'entreprise → Marques → Domaines → ajoute <code>tonsite.com</code>, valide via l'enregistrement DNS TXT proposé. Indispensable pour que le suivi reste fiable (iOS/navigateurs bloquant les cookies).</li>
+      <li>L'événement <code>Lead</code> se déclenche automatiquement à l'envoi du formulaire d'opt-in — c'est lui que tu choisiras comme objectif d'optimisation à l'étape suivante.</li>
+    </ol>
+    <div class="callout tip">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p><strong>API Conversions (CAPI)</strong> : recommandée à terme (elle double la fiabilité du tracking), mais pas bloquante pour démarrer à 50&nbsp;€/jour. Si tu passes par Systeme.io, elle se branche nativement dans les réglages du pixel du tunnel — active-la dès que possible.</p>
+    </div>
+  </section>
+
+  <section id="campagne">
+    <div class="step-head"><span class="step-num">04</span><h2>Structure de la campagne</h2></div>
+    <p>Depuis fin 2025, Meta fait passer toutes les campagnes Prospects par défaut en <strong>Advantage+</strong> : l'IA gère budget, placements et audience à partir d'une audience de base que tu lui donnes. C'est le bon mode pour un budget de test à 50&nbsp;€/jour.</p>
+
+    <div class="kv">
+      <div><span class="k">Objectif</span><span class="v">Prospects (Leads)</span></div>
+      <div><span class="k">Lieu de conversion</span><span class="v">Site web</span></div>
+      <div><span class="k">Événement</span><span class="v">Lead</span></div>
+      <div><span class="k">Budget</span><span class="v">50&nbsp;€ / jour (CBO)</span></div>
+    </div>
+
+    <ol>
+      <li>Ads Manager → Créer → <strong>Prospects</strong> → Meta propose la campagne Advantage+ prospects.</li>
+      <li>Lieu de conversion : <strong>Site web</strong> (pas formulaire instantané Meta — tu gardes ta propre page et ton pixel).</li>
+      <li>URL de destination : l'URL de ton domaine (page d'opt-in), <strong>pas</strong> le lien d'aperçu claude.ai.</li>
+      <li>Budget quotidien : <strong>50&nbsp;€</strong> au niveau campagne.</li>
+      <li>1 seul ad set suffit en Advantage+ ; ajoute 2 à 3 variantes de créas dedans pour laisser l'algorithme tester (voir <a class="inline" href="#creas">Créas</a>).</li>
+    </ol>
+
+    <div class="callout tip">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p>Laisse tourner <strong>3 à 4 jours sans y toucher</strong> après le lancement (phase d'apprentissage). Modifier le budget, les créas ou le ciblage pendant cette période relance l'apprentissage et fait grimper le coût par lead.</p>
+    </div>
+  </section>
+
+  <section id="ciblage">
+    <div class="step-head"><span class="step-num">05</span><h2>Ciblage — ton ICP</h2></div>
+    <p>Ton audience ne cherche pas encore « closing » — elle cherche à vivre de son sport. Le ciblage sert donc à orienter l'IA vers le bon terrain de jeu, pas à filtrer par mots-clés métier.</p>
+
+    <div class="kv">
+      <div><span class="k">Âge</span><span class="v">18–30 ans</span></div>
+      <div><span class="k">Genre</span><span class="v">Tous</span></div>
+      <div><span class="k">Zone</span><span class="v">France (ou tes villes cibles)</span></div>
+      <div><span class="k">Placements</span><span class="v">Advantage+ (auto)</span></div>
+    </div>
+
+    <h3>Suggestions d'audience à renseigner (Advantage+ reste libre d'élargir)</h3>
+    <ul>
+      <li>Musculation / fitness / CrossFit</li>
+      <li>Arts martiaux mixtes, boxe, sports de combat</li>
+      <li>Football, basket-ball, course à pied, cyclisme amateur</li>
+      <li>Développement personnel, dépassement de soi</li>
+      <li>Coaching sportif, préparation physique</li>
+    </ul>
+    <p>Laisse <strong>l'extension du ciblage détaillé activée</strong> : c'est ta créa (le hook vidéo) qui fait le vrai tri, pas la liste d'intérêts — Meta lit le contenu de la vidéo pour affiner qui la voit.</p>
+  </section>
+
+  <section id="creas">
+    <div class="step-head"><span class="step-num">06</span><h2>Formats créatifs</h2></div>
+    <div class="table-wrap">
+      <table class="spec-table">
+        <tr><th>Placement</th><th>Ratio</th><th>Résolution</th></tr>
+        <tr><td>Reels / Stories</td><td>9:16</td><td>1080 × 1920 px</td></tr>
+        <tr><td>Feed</td><td>4:5</td><td>1080 × 1350 px</td></tr>
+        <tr><td>Feed (secondaire)</td><td>1:1</td><td>1080 × 1080 px</td></tr>
+      </table>
+    </div>
+    <p>Fichier vidéo : MP4/MOV, encodage H.264, poids max 4&nbsp;Go (vise plutôt &lt;500&nbsp;Mo). Si tu ne peux fournir qu'un seul format, priorise le <strong>9:16</strong> : c'est le plus regardé sur ce type d'audience.</p>
+
+    <h3>Sous-titres</h3>
+    <ul>
+      <li><strong>Incrustés (burn-in)</strong> obligatoires dans les faits — la majorité regarde sans le son.</li>
+      <li>Génère-les avec CapCut, VEED ou l'outil de sous-titrage auto de Meta, puis relis-les à la main.</li>
+      <li>Garde le texte dans la <strong>zone de sécurité</strong> : évite les 14 % en haut et en bas de l'image en 9:16 (zone masquée par l'interface Reels/Stories).</li>
+    </ul>
+
+    <h3>Longueur &amp; structure de la vidéo</h3>
+    <ul>
+      <li><strong>15–30 secondes</strong> pour une pub de prospection ; accroche dans les 3 premières secondes.</li>
+      <li>Structure simple : problème (le job alimentaire qui bouffe le temps d'entraînement) → révélation (le closing comme solution méconnue) → appel à l'action (« laisse ton prénom et ton numéro »).</li>
+      <li>Prévois <strong>2 à 3 variantes de hook</strong> (les 3 premières secondes changent, le reste peut être identique) pour laisser Advantage+ arbitrer.</li>
+    </ul>
+
+    <h3>Format image (si tu testes aussi du statique)</h3>
+    <p>PNG/JPG, max 30&nbsp;Mo, mêmes ratios que ci-dessus. Texte sur l'image limité à l'essentiel (accroche + logo), le reste dans le texte de la pub.</p>
+  </section>
+
+  <section id="copy">
+    <div class="step-head"><span class="step-num">07</span><h2>Textes de la pub</h2></div>
+    <p>Trois blocs à remplir dans Ads Manager. Exemple de trame — adapte le ton à ta vidéo, prévois 2 variantes pour tester.</p>
+
+    <div class="ad-copy">
+      <span class="label">Texte principal</span>
+      <p>Tu t'entraînes dur, mais ton job alimentaire te bouffe ton temps et ton énergie pour percer dans ton sport ?</p>
+      <p>Il existe un métier que la plupart des sportifs ne connaissent pas : le closing. Des horaires libres, un revenu qui ne dépend pas d'un patron, le temps de t'entraîner sérieusement.</p>
+      <p>Laisse ton prénom et ton numéro ci-dessous, je t'appelle sous 24h pour comprendre ton profil et voir si je peux vraiment t'aider.</p>
+    </div>
+    <div class="ad-copy">
+      <span class="label">Titre</span>
+      <p>Vis de ton sport sans job alimentaire</p>
+    </div>
+    <div class="ad-copy">
+      <span class="label">Description</span>
+      <p>1 minute pour t'inscrire. Je te rappelle sous 24h.</p>
+    </div>
+
+    <div class="callout warn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+      <p>Ne mets aucun chiffre de revenu précis ou garanti (« gagne 5000&nbsp;€/mois ») dans le texte ou la vidéo — voir la section <a class="inline" href="#conformite">Conformité</a>.</p>
+    </div>
+  </section>
+
+  <section id="conformite">
+    <div class="step-head"><span class="step-num">08</span><h2>Conformité Meta — à lire avant de publier</h2></div>
+
+    <div class="callout warn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+      <p><strong>Catégorie spéciale « Emploi »</strong> : une offre perçue comme un poste salarié (mots comme « CDI », « poste à pourvoir », « salaire de X€ ») peut être classée par Meta en catégorie spéciale, ce qui interdit le ciblage précis par âge/genre. Formule ton offre comme une <strong>opportunité de formation / reconversion entrepreneuriale</strong> plutôt qu'une offre d'emploi classique, et reste honnête sur la nature réelle (activité de closing indépendante, pas un CDI).</p>
+    </div>
+    <div class="callout warn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+      <p><strong>Pas de promesse de revenu</strong> : Meta rejette (et peut restreindre le compte publicitaire) les pubs promettant un gain financier garanti ou irréaliste. Reste sur du factuel et du conditionnel : « peut te permettre de », « certains y arrivent », jamais de chiffre garanti.</p>
+    </div>
+    <div class="callout tip">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p>Mentionne dans les mentions légales de ton site (même une simple page) qui tu es et un moyen de contact — ça rassure Meta autant que tes prospects.</p>
+    </div>
+  </section>
+
+  <section id="suivi">
+    <div class="step-head"><span class="step-num">09</span><h2>Suivi &amp; optimisation</h2></div>
+    <ul>
+      <li><strong>J0–J3</strong> : ne touche à rien, laisse la phase d'apprentissage se faire.</li>
+      <li><strong>À partir de J4</strong> : regarde le <strong>coût par lead</strong> (dépense ÷ nombre de leads). S'il est stable ou en baisse, laisse tourner.</li>
+      <li><strong>Pour augmenter le budget</strong> : par palier de <strong>+10 à 20 %</strong>, jamais plus, en attendant 3-4 jours entre deux hausses.</li>
+      <li><strong>Si le coût par lead s'envole</strong> : change d'abord le hook vidéo (3 premières secondes) avant de toucher au ciblage.</li>
+      <li>Décroche vraiment sous 24h — un lead qui attend plus longtemps se refroidit et fausse ta lecture de la qualité du ciblage.</li>
+    </ul>
+  </section>
+
+  <section id="checklist">
+    <div class="step-head"><span class="step-num">10</span><h2>Checklist avant de publier</h2></div>
+    <ul class="checklist">
+      <li><span class="box"></span>Domaine acheté et connecté à l'hébergement des 2 pages</li>
+      <li><span class="box"></span>ID du pixel collé dans <code>optin.html</code> et <code>vsl.html</code></li>
+      <li><span class="box"></span>Domaine vérifié dans Business Manager</li>
+      <li><span class="box"></span>Clé Web3Forms (ou capture native Systeme.io) branchée et testée avec un vrai envoi</li>
+      <li><span class="box"></span>Vidéo VSL intégrée à la place du bloc placeholder</li>
+      <li><span class="box"></span>Vidéo pub montée en 9:16 avec sous-titres incrustés, 2-3 hooks différents</li>
+      <li><span class="box"></span>Textes de pub relus (aucune promesse de revenu chiffrée)</li>
+      <li><span class="box"></span>Campagne Prospects / Advantage+ créée, budget 50&nbsp;€/jour, événement Lead</li>
+      <li><span class="box"></span>URL de destination = ton domaine, pas un lien claude.ai</li>
+    </ul>
+  </section>
+</main>
+
+<footer>Guide préparé pour le lancement de la campagne « Opt-in Closing Sportifs ». Reviens ici à chaque étape — dis-moi quand tu as ta vidéo ou ton nom de domaine et on avance ensemble sur la suite.</footer>

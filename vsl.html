@@ -1,0 +1,138 @@
+<title>C'est noté</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #000000;
+    --white: #FFFFFF;
+    --cream: #EDE6D2;
+    --cream-dim: rgba(237,230,210,0.6);
+    --royal: #3452E1;
+    --line: rgba(237,230,210,0.22);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Montserrat', system-ui, sans-serif;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  .sheet {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  h1 {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(32px, 8vw, 42px);
+    line-height: 1.1;
+    margin: 0;
+    color: var(--white);
+    text-wrap: balance;
+  }
+  h1 span { color: var(--royal); font-style: italic; }
+
+  .sub {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--cream-dim);
+  }
+  .sub .important {
+    color: var(--royal);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .sub strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-height: 58vh;
+    background: #000;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .video-frame video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+  }
+  /* La vidéo est chargée depuis le fichier "video.mp4" placé à côté de
+     cette page HTML sur ton hébergement. Si ton fichier porte un autre
+     nom, mets-le à jour dans l'attribut src ci-dessous. */
+
+  .note {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--cream);
+  }
+
+  .signature {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--white);
+    margin: 0;
+  }
+</style>
+
+<div class="sheet">
+  <h1>Merci, <span id="prenom-place">à toi</span>.</h1>
+
+  <p class="sub"><span class="important">IMPORTANT</span> : regarde <strong>OBLIGATOIREMENT</strong> cette vidéo de 35 secondes avant que je t'appelle.</p>
+
+  <div class="video-frame">
+    <video controls playsinline preload="metadata" src="video.mp4"></video>
+  </div>
+
+  <p class="note">Tu seras appelé(e) dans les 24 prochaines heures. Un numéro va s'afficher sur ton téléphone : décroche, c'est moi.</p>
+
+  <p class="signature">— Alexandra</p>
+</div>
+
+<script>
+  // Personnalisation du prénom transmis par l'opt-in (sessionStorage)
+  let prenom = null;
+  try { prenom = sessionStorage.getItem('prenom'); } catch (err) {}
+  if (prenom) {
+    document.getElementById('prenom-place').textContent = prenom;
+  }
+
+  // ============================================================
+  // Pixel Meta — même ID que sur la page d'opt-in
+  // ============================================================
+  const META_PIXEL_ID = "XXXXXXXXXXXXXXXX";
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  if (META_PIXEL_ID.indexOf('X') === -1) {
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+    fbq('trackCustom', 'ViewedVSL');
+  }
+</script>
